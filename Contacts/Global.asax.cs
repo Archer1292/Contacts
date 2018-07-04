@@ -10,7 +10,7 @@ namespace Contacts
     {
         protected void Application_Start()
         {
-            Database.SetInitializer(new ContactDbInotializer());
+          //  Database.SetInitializer(new ContactDbInotializer());
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
