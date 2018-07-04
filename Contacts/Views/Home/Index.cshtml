@@ -1,0 +1,45 @@
+﻿@model PagedList.IPagedList<Contacts.Models.Contact>
+@using PagedList.Mvc;
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Contacts</title>
+    <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div>
+        <h3>Contacts</h3>
+        <p><a href="/Home/Create/">Добавить контакт</a></p>
+        <table>
+            <tr>
+                <td><p>Full name</p></td>
+                <td><p>Phone</p></td>
+                <td><p>Email</p></td>
+                <td></td>
+                <td></td>
+            </tr>
+            @foreach (var c in Model)
+            {
+                <tr>
+                    <td><p>@c.FullName</p></td>
+                    <td><p>@c.Phone</p></td>
+                    <td><p>@c.Email</p></td>
+                    <td><p><a href="/Home/Update/@c.Id">Edit</a></p></td>
+                    <td><p><a href="/Home/Delete/@c.Id">Delete</a></p></td>
+                </tr>
+            }
+        </table>
+        <br />
+        Страница @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) из @Model.PageCount
+
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+    </div>
+</body>
+</html>
